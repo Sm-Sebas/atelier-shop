@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Archive Atelier 🎨 | Digital Art Print Shop
 
-## Getting Started
+Archive Atelier es una plataforma de comercio electrónico curada, diseñada específicamente para artistas digitales. El proyecto combina una estética **brutalista minimalista** con una arquitectura técnica moderna para ofrecer una experiencia de "alta costura digital".
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Características Principales
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Visualización 3D:** Capacidad para ver los prints en un entorno tridimensional.
+- **Personalización de Producto:** Selección dinámica de tamaños de impresión y tipos de papel.
+- **Navegación Fluida:** Filtrado de obras y buscador integrado en la página principal.
+- **User Experience:** - Hover dinámico en colecciones (índices numéricos 01, 02...).
+  - Carrito de compras funcional (simulado sin pasarela de pago).
+  - Interfaz responsive de alto impacto visual.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Stack Tecnológico
 
-## Learn More
+- **Framework:** [Next.js](https://nextjs.org/) (React) para un rendimiento óptimo y SSR.
+- **Estilos:** [Tailwind CSS](https://tailwindcss.com/) para un diseño brutalista y responsive.
+- **Base de Datos & Auth:** [Supabase](https://supabase.com/) (PostgreSQL).
+- **Animaciones:** GSAP y CSS 3D Transforms.
+- **Despliegue:** [Vercel](https://vercel.com/).
 
-To learn more about Next.js, take a look at the following resources:
+## 📋 Especificaciones Técnicas
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+El proyecto incluye:
+- **Gestión de Estado:** Manejo del carrito y filtros mediante React Hooks.
+- **Filtros Avanzados:** Sistema de ordenación y búsqueda en tiempo real.
+- **Formulario de Contacto:** Validación de datos y links a redes sociales integrados.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📦 Instalación
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
