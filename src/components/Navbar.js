@@ -7,7 +7,7 @@ export default function Navbar() {
   const { toggleCart, cart } = useCart();
 
   return (
-    <header className="mb-12 md:mb-20 px-6 py-8 max-w-[1400px] mx-auto w-full">
+    <header className="mb-0  px-6 py-8 max-w-[1400px] mx-auto w-full">
       <div className="flex justify-between items-center">
         {/* LOGO */}
         <Link href="/" className="text-2xl md:text-3xl font-medium tracking-tighter italic">
