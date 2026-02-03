@@ -21,7 +21,7 @@ export default function ProductPage() {
   const [size, setSize] = useState('A3');
   const [paper, setPaper] = useState('Mate');
 
-  // LÓGICA PARA EL EFECTO 3D (Sin librerías externas)
+  // LÓGICA PARA EL EFECTO 3D
   const [rotate, setRotate] = useState({ x: 0, y: 0 });
   const handleMouseMove = (e) => {
     const card = e.currentTarget.getBoundingClientRect();
@@ -101,16 +101,20 @@ export default function ProductPage() {
   if (!product) return <div className="text-white p-20 bg-black min-h-screen">Product not found in database.</div>;
 
   return (
-    <main className="min-h-screen bg-[#000000] text-white p-6 md:p-10 flex flex-col">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 flex-1 items-center">
+    <main className="min-h-screen bg-[#000000] text-white p-6 md:p-10 flex flex-col items-center">
+      {/* Grid optimizada: 1 columna hasta XL (iPad Pro Vertical incluido) */}
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 xl:gap-20 flex-1 items-center max-w-[1400px] w-full">
         
-        {/* IMAGEN PRINCIPAL CON EFECTO 3D IMPLEMENTADO */}
-        <div className="flex flex-col items-center w-full gap-6">
+        {/* IMAGEN PRINCIPAL */}
+        <div className="flex flex-col items-center w-full gap-6 py-6 md:py-12 xl:py-0">
           <div 
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            className={`relative bg-black border border-black overflow-visible transition-all duration-500
-            ${product.orientation === 'landscape' ? 'w-full aspect-[1050/713]' : 'h-[60vh] lg:h-[80vh] aspect-[3/4]'}`}
+            className={`relative bg-black transition-all duration-500 flex justify-center
+            ${product.orientation === 'landscape' 
+                ? 'w-full aspect-[1050/713]' 
+                : 'w-[90%] sm:w-[75%] md:w-[65%] xl:w-full xl:h-[75vh] aspect-[3/4]'
+            }`}
             style={{ perspective: '1200px' }}
           >
             <div 
@@ -122,11 +126,10 @@ export default function ProductPage() {
             >
               <img 
                 src={product.image} 
-                className="w-full h-full object-cover  transition-all duration-1000 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)]" 
+                className="w-full h-full object-contain shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)]" 
                 alt="print" 
                 style={{ transform: 'translateZ(30px)' }}
               />
-              {/* Brillo dinámico */}
               <div 
                 className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-20 transition-opacity duration-500"
                 style={{
@@ -136,14 +139,10 @@ export default function ProductPage() {
               />
             </div>
           </div>
-
-          {/* <button onClick={() => setShowMockup(true)} className="text-[9px] tracking-[0.4em] text-zinc-500 hover:text-white transition-colors uppercase border-b border-white/10 hover:border-white pb-1">
-            [ View on Gallery Wall ]
-          </button> */}
         </div>
 
         {/* INFO PRODUCTO */}
-        <section className="flex flex-col justify-center space-y-8 max-w-md mx-auto lg:mx-0">
+        <section className="flex flex-col justify-center space-y-8 max-w-md mx-auto xl:mx-0 w-full pb-10 xl:pb-0">
           <div>
             <h1 className="text-[11px] uppercase tracking-[0.6em] text-zinc-500 mb-2">{product.name}</h1>
             <p className={`text-2xl font-light italic transition-all duration-300 ${priceFlash ? 'text-zinc-500 scale-95' : 'text-white scale-100'}`}>
@@ -154,7 +153,7 @@ export default function ProductPage() {
           <div className="space-y-6">
             <div>
               <p className="text-[10px] uppercase tracking-[.3em] text-zinc-600 mb-3 font-bold">Size</p>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 {['A4', 'A3', '50x70'].map((s) => (
                   <button key={s} onClick={() => setSize(s)} className={`px-5 py-2 border text-[12px] transition-all ${size === s ? 'border-white text-white' : 'border-zinc-800 text-zinc-500 hover:border-zinc-600'}`}>{s}</button>
                 ))}
@@ -163,7 +162,7 @@ export default function ProductPage() {
 
             <div>
               <p className="text-[10px] uppercase tracking-[.3em] text-zinc-600 mb-3 font-bold">Paper Finish</p>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 {['Mate', 'Satinado', 'Fine Art'].map((p) => (
                   <button key={p} onClick={() => setPaper(p)} className={`px-5 py-2 border text-[12px] transition-all ${paper === p ? 'border-white text-white' : 'border-zinc-800 text-zinc-500 hover:border-zinc-600'}`}>{p}</button>
                 ))}
@@ -188,7 +187,7 @@ export default function ProductPage() {
       </div>
 
       {/* SECCIÓN RECOMENDACIONES */}
-      <section ref={recommendationsRef} className="mt-40 border-t border-zinc-900 pt-20 pb-40">
+      <section ref={recommendationsRef} className="mt-20 xl:mt-40 border-t border-zinc-900 pt-20 pb-40 w-full max-w-[1400px]">
         <div className={`flex flex-col md:flex-row justify-between items-baseline mb-12 gap-4 transition-all duration-1000 ${isIntersecting ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-[10px] uppercase tracking-[0.5em] text-white font-bold">Complete your archive</h2>
           <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-600 italic">Curated pairings for your collection</p>
