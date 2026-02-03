@@ -56,26 +56,18 @@ export default function HomePage() {
   const ProductItem = ({ product, className, aspect = "aspect-[3/4]" }) => (
     <Link href={`/product/${product.id}`} className={`group block ${className}`}>
       <div className={`relative ${aspect} bg-zinc-900 overflow-hidden border border-white/5 transition-all duration-700 group-hover:border-zinc-700`}>
-        {/* PEQUEÑO BADGE DE DISPONIBILIDAD (Opcional, queda muy pro) */}
-        {/* <div className="absolute top-4 right-4 z-10 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-           <span className="w-1 h-1 bg-green-500 rounded-full animate-pulse"></span>
-           <span className="text-[7px] tracking-widest uppercase text-white">In Stock</span>
-        </div> */}
-
         <img 
           src={product.image} 
           alt={product.name}
-          className="w-full h-full object-cover  transition-all duration-[1.5s] ease-out group-hover:scale-105" 
+          className="w-full h-full object-cover transition-all duration-[1.5s] ease-out group-hover:scale-105" 
         />
-      </div>
-      <div className="mt-4 flex justify-between items-baseline px-1">
-        {/* He dejado tus títulos comentados pero ahora el hover de la imagen ya es potente */}
       </div>
     </Link>
   );
 
   return (
-    <main className="min-h-screen bg-black text-white p-6 md:p-12">
+    /* He unificado el padding lateral a px-6 para que en móvil nunca pegue al borde */
+    <main className="min-h-screen bg-black text-white px-6 py-12 md:p-12 max-w-[1400px] mx-auto overflow-x-hidden">
       
       {/* CABECERA */}
       <div className="mb-24 space-y-12 flex flex-col items-center">
@@ -87,7 +79,6 @@ export default function HomePage() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          {/* Contador de resultados minimalista */}
           <div className="absolute -bottom-6 left-0 right-0 text-center">
             <span className="text-[8px] text-zinc-700 tracking-widest uppercase">
               {filteredProducts.length} Results Found
@@ -95,7 +86,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-8 text-[9px] tracking-[0.3em] uppercase">
+        <div className="flex flex-wrap justify-center gap-4 md:gap-8 text-[9px] tracking-[0.3em] uppercase">
           {['ALL', 'Archive 01', 'Archive 02', 'Special Ed.', 'Collector'].map((cat) => (
             <button
               key={cat}
@@ -108,31 +99,26 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* GRID DINÁMICO */}
-      <div className="max-w-[1600px] mx-auto mb-40">
+      {/* GRID DINÁMICO - He corregido los span para evitar desbordamientos */}
+      <div className="w-full mb-40">
         
         {activeFilter === "ALL" && !searchTerm ? (
-          /* VISTA EDITORIAL ORIGINAL */
-          <div className="grid grid-cols-12 gap-y-32 gap-x-8 animate-in fade-in duration-1000">
+          <div className="grid grid-cols-4 md:grid-cols-12 gap-y-20 md:gap-y-32 gap-x-4 md:gap-x-8 animate-in fade-in duration-1000">
             {filteredProducts.slice(0, 4).map(p => (
-              <ProductItem key={p.id} product={p} className="col-span-12 sm:col-span-6 lg:col-span-3" />
+              <ProductItem key={p.id} product={p} className="col-span-4 md:col-span-6 lg:col-span-3" />
             ))}
             {filteredProducts.slice(4, 7).map(p => (
-              <ProductItem key={p.id} product={p} className="col-span-12 sm:col-span-4 lg:col-span-4" />
+              <ProductItem key={p.id} product={p} className="col-span-4 md:col-span-4 lg:col-span-4" />
             ))}
             {filteredProducts.slice(7, 9).map(p => (
-              <ProductItem key={p.id} product={p} className="col-span-12 lg:col-span-6" aspect="aspect-video" />
+              <ProductItem key={p.id} product={p} className="col-span-4 lg:col-span-6" aspect="aspect-video" />
             ))}
             {filteredProducts.slice(9, 12).map(p => (
-              <ProductItem key={p.id} product={p} className="col-span-12 sm:col-span-4 lg:col-span-4" />
+              <ProductItem key={p.id} product={p} className="col-span-4 md:col-span-4 lg:col-span-4" />
             ))}
-            {/* {filteredProducts.slice(12, 13).map(p => (
-              <ProductItem key={p.id} product={p} className="col-span-12" aspect="aspect-[21/9] md:aspect-[3/1]" />
-            ))} */}
           </div>
         ) : (
-          /* VISTA FILTRADA (Grid Uniforme) */
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-20 animate-in fade-in slide-in-from-bottom-2 duration-1000">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 md:gap-x-8 gap-y-12 md:gap-y-20 animate-in fade-in slide-in-from-bottom-2 duration-1000">
             {filteredProducts.map(p => (
               <ProductItem 
                 key={p.id} 
@@ -150,15 +136,6 @@ export default function HomePage() {
           </div>
         )}
       </div>
-
-      {/* FOOTER DISCRETO (Sugerencia para cerrar el diseño) */}
-      {/* <footer className="mt-40 border-t border-zinc-900 pt-10 flex justify-between items-center text-[8px] tracking-[0.4em] text-zinc-600 uppercase">
-        <p>© 2026 Archive Atelier</p>
-        <div className="flex gap-8">
-           <span>Stockholm</span>
-           <span>Berlin</span>
-        </div>
-      </footer> */}
     </main>
   );
 }
