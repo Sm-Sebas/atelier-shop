@@ -77,7 +77,7 @@ const handleCheckout = async () => {
             cart.map((item, index) => (
               <div key={`${item.id}-${item.size}-${item.paper}`} className="flex gap-6 border-b border-zinc-100 pb-10 text-black">
                 <div className="w-24 h-32 bg-zinc-900 overflow-hidden border border-black/5">
-                  <img src={item.image} className="w-full h-full object-cover grayscale" alt={item.name} />
+                  <img src={item.image} className="w-full h-full object-cover " alt={item.name} />
                 </div>
                 <div className="flex-1 flex flex-col justify-between">
                   <div>
